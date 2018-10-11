@@ -1,6 +1,6 @@
-function cachedFetch(url, options, expiryMin = 5) {
+function cachedFetch(url, options, expiryMin = 5, keyFunc = (x => x)) {
   const storage = localStorage;
-  const key = "fetch_" + url;
+  const key = "fetch_" + keyFunc(url);
   const expiryMS = expiryMin * 60 * 1000;
   const cacheRaw = storage.getItem(key);
   const cacheObj = cacheRaw ? JSON.parse(cacheRaw) : null;
